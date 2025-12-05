@@ -66,6 +66,8 @@ ScaffoldingReadMe.txt
 
 # SQLite
 app.db
+app.db-shm
+app.db-wal
 
 # Local configuration
 appsettings.Development.json
