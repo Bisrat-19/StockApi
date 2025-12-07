@@ -1,7 +1,18 @@
-namespace StockApi.Dtos.Comment;
+using System.ComponentModel.DataAnnotations;
 
-public class CreateCommentRequestDto
+namespace StockApi.Dtos.Comment
 {
-    public string Title { get; set; } = string.Empty;
-    public string Content { get; set; } = string.Empty;
+    public class CreateCommentRequestDto
+    {
+        [Required]
+        [MinLength(5, ErrorMessage = "Title must be at least 5 characters long")]
+        [MaxLength(200, ErrorMessage = "Title must be at most 200 characters long")]
+        public string Title { get; set; } = string.Empty;
+
+        [Required]
+        [MinLength(5, ErrorMessage = "Content must be at least 5 characters long")]
+        [MaxLength(200, ErrorMessage = "Content must be at most 200 characters long")]
+        public string Content { get; set; } = string.Empty;
+    }
 }
+
