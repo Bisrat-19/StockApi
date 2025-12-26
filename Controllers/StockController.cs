@@ -4,6 +4,7 @@ using StockApi.Mappers;
 using StockApi.Dtos.Stock;
 using Microsoft.EntityFrameworkCore;
 using StockApi.Interfaces;
+using StockApi.Helper;
 
 namespace StockApi.Controllers
 {
@@ -19,12 +20,12 @@ namespace StockApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var stocks = await _stockRepo.GetAllAsync();
+            var stocks = await _stockRepo.GetAllAsync(query);
             var stockDto = stocks.Select(stock => stock.ToStockDto());  
             return Ok(stockDto);
         }
