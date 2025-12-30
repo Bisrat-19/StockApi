@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using StockApi.Interfaces;
 using StockApi.Dtos.Comment;
 using StockApi.Mappers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StockApi.Controllers
 {
     [Route("api/comment")]
     [ApiController]
+    [Authorize]
     public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _commentRepo;

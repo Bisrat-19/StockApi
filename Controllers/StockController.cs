@@ -5,11 +5,13 @@ using StockApi.Dtos.Stock;
 using Microsoft.EntityFrameworkCore;
 using StockApi.Interfaces;
 using StockApi.Helper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StockApi.Controllers
 {
     [ApiController]
     [Route("api/stock")]
+    [Authorize]
     public class StockController : ControllerBase
     {
         private readonly IStockRepository _stockRepo;
