@@ -62,7 +62,12 @@ namespace StockApi.Controllers
 
                 if(createdUser.Succeeded)
                 {
-                    var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
+                    var role = string.IsNullOrWhiteSpace(registerDto.Role) ? "User" : registerDto.Role;
+
+                    if (role != "Admin" && role != "User")
+                        return BadRequest("Invalid role. Allowed roles are 'Admin' and 'User'.");
+
+                    var roleResult = await _userManager.AddToRoleAsync(appUser, role);
                     if(roleResult.Succeeded)
                     {
                         return Ok(
